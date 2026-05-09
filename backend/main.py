@@ -18,7 +18,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DATA_DIR = "/Users/yanyutong/.gemini/antigravity/测试集制作"
+# 自动获取项目根目录下的 data 文件夹
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+# 确保文件夹存在
+os.makedirs(DATA_DIR, exist_ok=True)
 # 全局缓存，用于存放预览阶段的抽样结果
 CACHED_RESULTS = {} # { preview_id: { "df": DataFrame, "filename": str } }
 
